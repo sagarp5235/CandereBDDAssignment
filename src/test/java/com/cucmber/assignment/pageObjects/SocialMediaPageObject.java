@@ -20,7 +20,7 @@ public class SocialMediaPageObject {
 	ReadConfig readConfig;
 	
 	private By facebookPagetext = By.xpath("//h1[text()='Candere by Kalyan Jewellers']");
-	private By twitterPagetext = By.xpath("//span[@css='1' and text()='Candere By Kalyan Jewellers']");
+	private By twitterPagetext = By.xpath("//div[@data-testid='UserName']//span[text()='Candere By Kalyan Jewellers']");
 	private By instagramPagetext = By.xpath("//h2[text()='canderejewellery']");
 	public SocialMediaPageObject(WebDriver driver, WebDriverWait wait) {
 		this.driver = driver;
@@ -37,7 +37,7 @@ public class SocialMediaPageObject {
 	}
 	
 	
-	public void validateSocialMediaText(String socialMediaSite, String socialMediaText) {
+	public void validateSocialMediaText(String socialMediaSite, String socialMediaText) throws InterruptedException {
 		wait.until(ExpectedConditions.urlContains(socialMediaSite));
 		logger.info("validating text on social media pages");
 		switch(socialMediaSite.toLowerCase()) {
@@ -48,7 +48,8 @@ public class SocialMediaPageObject {
 			break;
 			
 		case "twitter":
-			wait.until(ExpectedConditions.elementToBeClickable(twitterPagetext));
+			
+			wait.until(ExpectedConditions.visibilityOfElementLocated(twitterPagetext));
 			WebElement twitterPageTextElement = driver.findElement(twitterPagetext);
 			Assert.assertEquals(socialMediaText, twitterPageTextElement.getText());
 			break;

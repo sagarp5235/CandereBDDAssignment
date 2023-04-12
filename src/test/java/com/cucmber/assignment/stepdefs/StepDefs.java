@@ -156,7 +156,7 @@ public class StepDefs {
 	}
 
 	@Then("social media page contain {string} {string}")
-	public void social_media_page_contain(String socialMediaSite, String socialMediaText) {
+	public void social_media_page_contain(String socialMediaSite, String socialMediaText) throws InterruptedException {
 		socialMediaPageObject.validateSocialMediaText(socialMediaSite, socialMediaText);
 		scn.log("validating social media handle on webpages");
 	}
