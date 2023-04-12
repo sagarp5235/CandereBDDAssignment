@@ -19,3 +19,28 @@ When user click on product link
 Then product descrption is opened
 When product size is selected
 Then price update is validated
+
+@footerOptionsCheck
+Scenario: user opened landing page of application and validate about us options
+Given user scroll to bottom of landing page
+When user is able to see About Us section
+Then under About Us section below options are visible
+| About Our Company    |
+| Terms and Conditions |
+| Privacy Policy			 |
+| FAQ									 |
+| Offers T&Cs					 |
+| Customer Reviews		 |
+
+@socialMediaOptions
+Scenario Outline: user opened landing page og application and validate social media options
+Given user scroll down to bottom of landing page
+And user is able to see follow us section
+When user click for "<social_media_link>"
+Then url should contain "<social_media_handle>" 
+And social media page contain "<social_media_link>" "<social_media_text>"
+ 		Examples:
+	|social_media_link| social_media_handle|social_media_text						|
+	|facebook					|canderejewellery		 |Candere by Kalyan Jewellers  |
+	|twitter					|canderebyKalyan		 |Candere By Kalyan Jewellers	|
+	|instagram				|canderejewellery		 |canderejewellery						|

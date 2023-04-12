@@ -2,10 +2,13 @@ package com.cucmber.assignment.driverFactory;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import org.openqa.selenium.UnexpectedAlertBehaviour;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.edge.EdgeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.remote.CapabilityType;
+import org.openqa.selenium.remote.DesiredCapabilities;
 
 import io.github.bonigarcia.wdm.WebDriverManager;
 
@@ -19,6 +22,7 @@ public class WebDriverFactory {
 		switch(browser.toLowerCase()) {
 		
 		case "chrome":
+			
 		WebDriverManager.chromedriver().setup();
 		driver= new ChromeDriver();
 		logger.info("browser got invoked:->"+browser);
