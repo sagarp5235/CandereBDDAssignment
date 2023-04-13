@@ -37,7 +37,7 @@ public class SocialMediaPageObject {
 	}
 	
 	
-	public void validateSocialMediaText(String socialMediaSite, String socialMediaText) throws InterruptedException {
+	public void validateSocialMediaText(String socialMediaSite, String socialMediaText) {
 		wait.until(ExpectedConditions.urlContains(socialMediaSite));
 		logger.info("validating text on social media pages");
 		switch(socialMediaSite.toLowerCase()) {
