@@ -29,16 +29,16 @@ public class ProductDescriptionPageObject {
 		readConfig = new ReadConfig();
 	}
 	
-	public void selectProductSize() {
+	public void selectProductSize(String productSize) {
 		wait.until(ExpectedConditions.elementToBeClickable(sizeSelect));
 		WebElement sizeSelectElement = driver.findElement(sizeSelect);
 		Select size = new Select(sizeSelectElement);
-		size.selectByVisibleText(readConfig.prop.getProperty("size"));
+		size.selectByVisibleText(productSize);
 		}
 	
-	public void validatePriceUpdateAlert() {
-		wait.until(ExpectedConditions.visibilityOfElementLocated(priceupdateText));
+	public void validatePriceUpdateAlert(String priceUpdatedText) {
 		WebElement priceupdateTextElement = driver.findElement(priceupdateText);
-		Assert.assertEquals(readConfig.prop.getProperty("priceUpdateText"), priceupdateTextElement.getText());
+		wait.until(ExpectedConditions.visibilityOf(priceupdateTextElement));
+		Assert.assertEquals(priceUpdatedText, priceupdateTextElement.getText());
 	}
 }

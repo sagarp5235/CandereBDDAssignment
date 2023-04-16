@@ -5,20 +5,20 @@ Background: Navigation to Application BASE URL
 Given user navigate to landing page
 @validateLandingPage
 Scenario: User opened landing page and validate page title
-Given user validate page title
+Given user validate page title "Online Jewellery Shopping India | Candere By Kalyan Jewellers | Most Trusted Online Jewellery Store"
 
 @searchProduct
 Scenario: User opened landing page and search for product then product is suggested
-Given user enter product name
-Then search result is validated
+Given user enter product name "majestic solitaire diamond ring"
+Then search result is validated "majestic solitaire diamond Ring"
 
 @searchProductDesc
 Scenario: user opened landing page and search for product then product description is shown
-Given user input product name
+Given user input product name "majestic solitaire diamond ring"
 When user click on product link
 Then product descrption is opened
-When product size is selected
-Then price update is validated
+When product size is selected "15"
+Then price update is validated "Price updated"
 
 @footerOptionsCheck
 Scenario: user opened landing page of application and validate about us options
@@ -41,6 +41,6 @@ Then url should contain "<social_media_handle>"
 And social media page contain "<social_media_link>" "<social_media_text>"
  		Examples:
 	|social_media_link| social_media_handle|social_media_text						|
-	|facebook					|canderejewellery		 |Candere by Kalyan Jewellers  |
-	|twitter					|canderebyKalyan		 |Candere By Kalyan Jewellers	|
+	|facebook					|canderejewellery		 |Candere by Kalyan Jewellers |
+  |twitter					|canderebyKalyan		 |Candere By Kalyan Jewellers	|
 	|instagram				|canderejewellery		 |canderejewellery						|

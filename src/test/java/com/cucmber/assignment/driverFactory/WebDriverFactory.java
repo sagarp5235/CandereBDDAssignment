@@ -49,10 +49,6 @@ public class WebDriverFactory {
 		return driver;
 	}
 	
-	public static void navigateToURL(String URL) {
-		driver.get(URL);
-		logger.info("navigating to:->"+URL);
-	}
 	
 	public static void closeBrowser() {
 		driver.quit();

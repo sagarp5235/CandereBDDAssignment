@@ -57,31 +57,31 @@ public class StepDefs {
 		scn.log("navigating to landing page");
 	}
 
-	@Given("user validate page title")
-	public void user_validate_page_title() {
+	@Given("user validate page title {string}")
+	public void user_validate_page_title(String pageTitle) {
 		logger.info("validating title of landing page");
-		landingPageObject.validateLandingPageTitle();
+		landingPageObject.validateLandingPageTitle(pageTitle);
 		scn.log("Validating landing page");
 	}
 
 	// implementation for test Scenario Search product
 
-	@Given("user enter product name")
-	public void user_enter_product_name() throws InterruptedException {
-		landingPageObject.searchBoxOperation();
+	@Given("user enter product name {string}")
+	public void user_enter_product_name(String productName) throws InterruptedException  {
+		landingPageObject.searchBoxOperation(productName);
 	}
 
-	@Then("search result is validated")
-	public void search_result_is_validated() {
-		landingPageObject.validateSearchResult();
+	@Then("search result is validated {string}")
+	public void search_result_is_validated(String result) {
+		landingPageObject.validateSearchResult(result);
 		scn.log("validating search result");
 	}
 
 	// implementation for Scenario 3 product description operations
 
-	@Given("user input product name")
-	public void user_input_product_name() throws InterruptedException {
-		landingPageObject.searchBoxOperation();
+	@Given("user input product name {string}")
+	public void user_input_product_name(String productName) throws InterruptedException {
+		landingPageObject.searchBoxOperation(productName);
 	}
 
 	@When("user click on product link")
@@ -92,19 +92,20 @@ public class StepDefs {
 	@Then("product descrption is opened")
 	public void product_descrption_is_opened() {
 		logger.info("Validating product descrption page");
+		
 		scn.log("validating product description");
 	}
 
-	@When("product size is selected")
-	public void product_size_is_selected() {
+	@When("product size is selected {string}")
+	public void product_size_is_selected(String productSize) {
 		logger.info("selecting the size for the ring");
-		productDescriptionPageObject.selectProductSize();
 		scn.log("select size of product");
+		productDescriptionPageObject.selectProductSize(productSize);
 	}
 
-	@Then("price update is validated")
-	public void price_update_is_validated() {
-		productDescriptionPageObject.validatePriceUpdateAlert();
+	@Then("price update is validated {string}")
+	public void price_update_is_validated(String priceUpdatedText) {
+		productDescriptionPageObject.validatePriceUpdateAlert(priceUpdatedText);
 		scn.log("validating price update promp is shown");
 	}
 
@@ -163,7 +164,7 @@ public class StepDefs {
 
 	@After(order = 0)
 	public void closeBrowser() {
-		driver.quit();
+		WebDriverFactory.closeBrowser();
 	}
 
 	@After(order = 1)

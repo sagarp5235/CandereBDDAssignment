@@ -8,7 +8,7 @@
 
     <Appenders>
         <!-- Setting for creating log file for each run -->
-        <File name="File" fileName="${basePath}/AmazonTestLog_${filePattern}.log" append="false" filePattern="${basePath}/AmazonTestLog_${filePattern}.log">
+        <File name="File" fileName="${basePath}/Candere_Assignment_Test_Log${filePattern}.log" append="false" filePattern="${basePath}/AmazonTestLog_${filePattern}.log">
             <PatternLayout
                     pattern="%d{yyyy-MMM-dd HH:mm:ss a} [%t] %-5level %logger{36} - %msg%n" />
         </File>

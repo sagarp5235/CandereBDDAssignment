@@ -24,7 +24,6 @@ import com.cucmber.assignment.utilities.ReadConfig;
 
 			
 			private By searchBox = By.xpath("//input[@id='search']"); // locator for search box on home page
-			private By searchButton = By.xpath("//button[@type='submit' and @title='Search']"); // locator for search button.
 			private By searchResult = By.xpath("//div[contains(text(),'Majestic')]"); //locator for search result link containing keyword 
 			private By aboutUs = By.xpath("//p[text()='ABOUT US']");
 			private By aboutUsOptions = By.xpath("//p[text()='ABOUT US']//parent::nav//a[text()]");
@@ -41,22 +40,22 @@ import com.cucmber.assignment.utilities.ReadConfig;
 				logger.info("driver got invoked for URL->");
 			}
 		
-			public void validateLandingPageTitle() {
-				Assert.assertEquals(readConfig.prop.getProperty("pageTitle"), driver.getTitle());
+			public void validateLandingPageTitle(String pageTitle) {
+				Assert.assertEquals(pageTitle, driver.getTitle());
 			}
 			
-			public void searchBoxOperation() throws InterruptedException {
+			public void searchBoxOperation(String productName) throws InterruptedException {
 				WebElement searchBoxElement = driver.findElement(searchBox);
 				wait.until(ExpectedConditions.elementToBeClickable(searchBoxElement));
-				searchBoxElement.sendKeys(readConfig.prop.getProperty("searchKeyword"));
+				searchBoxElement.sendKeys(productName);
 				Thread.sleep(4000);
 			}
 			
 			
-			public void validateSearchResult() {
+			public void validateSearchResult(String result) {
 				WebElement searchResultElement = driver.findElement(searchResult);
 				wait.until(ExpectedConditions.elementToBeClickable(searchResult));
-				Assert.assertEquals(readConfig.prop.getProperty("expectedResultName"), searchResultElement.getText());
+				Assert.assertEquals(result, searchResultElement.getText());
 			}
 			
 			public void searchOperation() {
