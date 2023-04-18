@@ -13,6 +13,7 @@ import org.apache.logging.log4j.LogManager;
 		import org.openqa.selenium.support.ui.WebDriverWait;
 
 import com.cucmber.assignment.utilities.ReadConfig;
+import com.cucmber.assignment.utilities.ScrollOperationUtility;
 
 		public class LandingPageObject {
 
@@ -21,6 +22,7 @@ import com.cucmber.assignment.utilities.ReadConfig;
 			private WebDriver driver;
 			private WebDriverWait wait;
 			ReadConfig readConfig;
+			ScrollOperationUtility scrollOperationUtility;
 
 			
 			private By searchBox = By.xpath("//input[@id='search']"); // locator for search box on home page
@@ -33,6 +35,7 @@ import com.cucmber.assignment.utilities.ReadConfig;
 				this.driver = driver;
 				this.wait = wait;
 				readConfig = new ReadConfig();
+				scrollOperationUtility = new ScrollOperationUtility(driver);
 			}
 
 			public void navigateTolandingPage() {
@@ -65,14 +68,13 @@ import com.cucmber.assignment.utilities.ReadConfig;
 			
 			public void scrollToBottomOfPage() {
 				WebElement aboutUSElement = driver.findElement(aboutUs);
-				JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 				logger.info("Scrolling to bottom of page to search for options");
-				jsExecutor.executeScript("arguments[0].scrollIntoView(true);", aboutUSElement);
+				scrollOperationUtility.scrollToOption(aboutUSElement);
 			}
 			
-			public void aboutUSVisibilityCheck() {
+			public void aboutUSVisibilityCheck(String sectionName) {
 				WebElement aboutUSElement = driver.findElement(aboutUs);
-				Assert.assertEquals(readConfig.prop.getProperty("footerOption"), aboutUSElement.getText());
+				Assert.assertEquals(sectionName, aboutUSElement.getText());
 			}
 			
 			public void aboutUsOptionsCheck(List<String> expectedAboutUsOptions) {
@@ -93,9 +95,8 @@ import com.cucmber.assignment.utilities.ReadConfig;
 			
 			public void scrollToFollowUS() {
 				WebElement followUSElement = driver.findElement(followUs);
-				JavascriptExecutor jsExecutor = (JavascriptExecutor) driver;
 				logger.info("Scrolling to bottom of page to search for options");
-				jsExecutor.executeScript("arguments[0].scrollIntoView(true);", followUSElement);
+				scrollOperationUtility.scrollToOption(followUSElement);
 			}
 			
 			public void followUsVisibilityCheck() {

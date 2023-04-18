@@ -9,7 +9,7 @@ import io.cucumber.junit.CucumberOptions;
 @CucumberOptions(
 		features = "classpath:features",
 		glue ="com.cucmber.assignment.stepdefs",
-		 tags="@searchProductDesc", // to tell which tagged feature file to execute, keep empty if executing from cmd.
+		 tags="@socialMediaOptions", // to tell which tagged feature file to execute, keep empty if executing from cmd.
 	        plugin = {"pretty", // to generate reports 
 	            "html:target/html/testreport.html",
 	            "json:target/json/file.json",

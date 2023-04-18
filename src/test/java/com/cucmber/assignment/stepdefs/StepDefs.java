@@ -14,6 +14,7 @@ import com.cucmber.assignment.driverFactory.WebDriverFactory;
 import com.cucmber.assignment.pageObjects.LandingPageObject;
 import com.cucmber.assignment.pageObjects.ProductDescriptionPageObject;
 import com.cucmber.assignment.pageObjects.SocialMediaPageObject;
+import com.cucmber.assignment.utilities.CaptureScreenShot;
 import com.cucmber.assignment.utilities.ReadConfig;
 
 import io.cucumber.java.After;
@@ -36,6 +37,7 @@ public class StepDefs {
 	ProductDescriptionPageObject productDescriptionPageObject;
 	SocialMediaPageObject socialMediaPageObject;
 	ReadConfig readConfig;
+	CaptureScreenShot captureScreenShot;
 
 	@Before
 	public void setup(Scenario scn) throws Exception {
@@ -48,6 +50,7 @@ public class StepDefs {
 		productDescriptionPageObject = new ProductDescriptionPageObject(driver, wait);
 		socialMediaPageObject = new SocialMediaPageObject(driver, wait);
 		readConfig = new ReadConfig();
+		captureScreenShot = new CaptureScreenShot(driver);
 	}
 
 	@Given("user navigate to landing page")
@@ -89,10 +92,10 @@ public class StepDefs {
 		landingPageObject.searchOperation();
 	}
 
-	@Then("product descrption is opened")
-	public void product_descrption_is_opened() {
+	@Then("product descrption is opened for {string}")
+	public void product_descrption_is_opened_for(String productName) {
 		logger.info("Validating product descrption page");
-		
+		productDescriptionPageObject.validateProductDesciption(productName);
 		scn.log("validating product description");
 	}
 
@@ -117,9 +120,9 @@ public class StepDefs {
 		scn.log("Scrolling to bottom of page");
 	}
 
-	@When("user is able to see About Us section")
-	public void user_is_able_to_see_about_us_section() {
-		landingPageObject.aboutUSVisibilityCheck();
+	@When("user is able to see {string} section")
+	public void user_is_able_to_see_section(String sectionName) {
+		landingPageObject.aboutUSVisibilityCheck(sectionName);
 		scn.log("check visibility of about us section");
 	}
 
@@ -170,9 +173,7 @@ public class StepDefs {
 	@After(order = 1)
 	public void takeScreenshot(Scenario scn) {
 		if (scn.isFailed()) {
-			TakesScreenshot scrnshot = (TakesScreenshot) driver;
-			byte[] data = scrnshot.getScreenshotAs(OutputType.BYTES);
-			scn.attach(data, "image/png", "failed step name:->" + scn.getName());
+			captureScreenShot.takeScreenshot(scn);
 		} else {
 			scn.log("No error, no screenshot captured");
 		}

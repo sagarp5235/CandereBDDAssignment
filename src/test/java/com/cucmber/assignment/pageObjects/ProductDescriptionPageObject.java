@@ -29,12 +29,18 @@ public class ProductDescriptionPageObject {
 		readConfig = new ReadConfig();
 	}
 	
+	
 	public void selectProductSize(String productSize) {
 		wait.until(ExpectedConditions.elementToBeClickable(sizeSelect));
 		WebElement sizeSelectElement = driver.findElement(sizeSelect);
 		Select size = new Select(sizeSelectElement);
 		size.selectByVisibleText(productSize);
 		}
+	
+	public void validateProductDesciption(String productName) {
+		wait.until(ExpectedConditions.titleContains(productName));
+		Assert.assertEquals(productName, driver.getTitle());
+	}
 	
 	public void validatePriceUpdateAlert(String priceUpdatedText) {
 		WebElement priceupdateTextElement = driver.findElement(priceupdateText);

@@ -16,14 +16,14 @@ Then search result is validated "majestic solitaire diamond Ring"
 Scenario: user opened landing page and search for product then product description is shown
 Given user input product name "majestic solitaire diamond ring"
 When user click on product link
-Then product descrption is opened
+Then product descrption is opened for "Majestic Solitaire Diamond Ring"
 When product size is selected "15"
 Then price update is validated "Price updated"
 
 @footerOptionsCheck
 Scenario: user opened landing page of application and validate about us options
 Given user scroll to bottom of landing page
-When user is able to see About Us section
+When user is able to see "ABOUT US" section
 Then under About Us section below options are visible
 | About Our Company    |
 | Terms and Conditions |
