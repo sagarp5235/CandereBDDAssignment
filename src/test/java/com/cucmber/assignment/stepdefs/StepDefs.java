@@ -51,6 +51,7 @@ public class StepDefs {
 		socialMediaPageObject = new SocialMediaPageObject(driver, wait);
 		readConfig = new ReadConfig();
 		captureScreenShot = new CaptureScreenShot(driver);
+	
 	}
 
 	@Given("user navigate to landing page")

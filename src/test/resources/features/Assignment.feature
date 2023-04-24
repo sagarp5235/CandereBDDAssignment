@@ -5,7 +5,8 @@ Background: Navigation to Application BASE URL
 Given user navigate to landing page
 @validateLandingPage
 Scenario: User opened landing page and validate page title
-Given user validate page title "Online Jewellery Shopping India | Candere By Kalyan Jewellers | Most Trusted Online Jewellery Store"
+Given user navigate to landing page
+And user validate page title "Online Jewellery Shopping India | Candere By Kalyan Jewellers | Most Trusted Online Jewellery Store"
 
 @searchProduct
 Scenario: User opened landing page and search for product then product is suggested

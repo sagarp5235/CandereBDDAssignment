@@ -31,7 +31,7 @@ public class SocialMediaPageObject {
 	
 	public void validateSocialMediaHandle(String mediaHandle) {
 		wait.until(ExpectedConditions.urlContains(mediaHandle));
-		logger.info("validating social media handle");
+		logger.info("validating social media handle for "+mediaHandle);
 		Assert.assertTrue("test failed", driver.getCurrentUrl().contains(mediaHandle));
 		
 	}
